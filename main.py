@@ -33,8 +33,6 @@ def main():
             new_img.save(output)
             input = output
 
-    check_image_status(output)
-
     available_qualities = [q for q in range(MIN_QUALITY, MAX_QUALITY + 1)]
     min_quality_index = 0
     max_quality_index = len(available_qualities) - 1
@@ -50,7 +48,6 @@ def main():
 
         with Image.open(input) as img:
             img.save(output, optimized=True, quality=quality)
-            check_image_status(output)
 
         if (filesize := os.path.getsize(output)) > MAX_FILESIZE:
             max_quality_index = mid_quality_index
